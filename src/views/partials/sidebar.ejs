@@ -1,0 +1,183 @@
+<!-- Sidebar -->
+<div class="bg-gray-800 w-64 h-full fixed top-0 left-0 overflow-y-auto">
+  <!-- Sidebar Content -->
+  <div class="p-6">
+    <h1 class="text-white text-3xl font-semibold">Final</h1>
+    <ul class="mt-6">
+      <li class="py-2">
+        <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4">Dashboard</a>
+      </li>
+      <li class="py-2">
+        <!-- Dropdown Trigger -->
+        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 flex justify-between"
+          id="category">
+          Categories
+          <svg id="angle-down" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+            fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M10 12.586L4.707 7.293a1 1 0 011.414-1.414L10 10.758l4.879-4.879a1 1 0 111.414 1.414L10 12.586z"
+              clip-rule="evenodd" />
+          </svg>
+          <svg id="angle-up" class="h-5 w-5 hidden" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M 16 6.59375 L 15.28125 7.28125 L 2.78125 19.78125 L 4.21875 21.21875 L 16 9.4375 L 27.78125 21.21875 L 29.21875 19.78125 L 16.71875 7.28125 Z">
+              </path>
+            </g>
+          </svg>
+        </a>
+        <!-- Dropdown Content -->
+        <ul class="pl-4 hidden" id="category-menu">
+          <li>
+            <a href="/category" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">All
+              Categories</a>
+          </li>
+          <li>
+            <a href="/category/create" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">Add
+              Category</a>
+          </li>
+        </ul>
+      </li>
+      <li class="py-2">
+        <!-- Dropdown Trigger -->
+        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 flex justify-between"
+          id="sub-category">
+          Sub Categories
+          <svg id="angle-down" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+            fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M10 12.586L4.707 7.293a1 1 0 011.414-1.414L10 10.758l4.879-4.879a1 1 0 111.414 1.414L10 12.586z"
+              clip-rule="evenodd" />
+          </svg>
+          <svg id="angle-up" class="h-5 w-5 hidden" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M 16 6.59375 L 15.28125 7.28125 L 2.78125 19.78125 L 4.21875 21.21875 L 16 9.4375 L 27.78125 21.21875 L 29.21875 19.78125 L 16.71875 7.28125 Z">
+              </path>
+            </g>
+          </svg>
+        </a>
+        <!-- Dropdown Content -->
+        <ul class="pl-4 hidden" id="sub-category-menu">
+          <li>
+            <a href="/subcategory" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">All Sub
+              Categories</a>
+          </li>
+          <li>
+            <a href="/subcategory/create" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">Add
+              Sub Category</a>
+          </li>
+        </ul>
+      </li>
+      <li class="py-2">
+        <!-- Dropdown Trigger -->
+        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 flex justify-between"
+          id="product">
+          Product
+          <svg id="angle-down" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+            fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M10 12.586L4.707 7.293a1 1 0 011.414-1.414L10 10.758l4.879-4.879a1 1 0 111.414 1.414L10 12.586z"
+              clip-rule="evenodd" />
+          </svg>
+          <svg id="angle-up" class="h-5 w-5 hidden" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M 16 6.59375 L 15.28125 7.28125 L 2.78125 19.78125 L 4.21875 21.21875 L 16 9.4375 L 27.78125 21.21875 L 29.21875 19.78125 L 16.71875 7.28125 Z">
+              </path>
+            </g>
+          </svg>
+        </a>
+        <!-- Dropdown Content -->
+        <ul class="pl-4 hidden" id="product-menu">
+          <li>
+            <a href="/product" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">All
+              Products</a>
+          </li>
+          <li>
+            <a href="/product/create" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">Add
+              Product</a>
+          </li>
+        </ul>
+      </li>
+      <li class="py-2">
+        <!-- Dropdown Trigger -->
+        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 flex justify-between"
+          id="manager">
+          Manager
+          <svg id="angle-down" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+            fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M10 12.586L4.707 7.293a1 1 0 011.414-1.414L10 10.758l4.879-4.879a1 1 0 111.414 1.414L10 12.586z"
+              clip-rule="evenodd" />
+          </svg>
+          <svg id="angle-up" class="h-5 w-5 hidden" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M 16 6.59375 L 15.28125 7.28125 L 2.78125 19.78125 L 4.21875 21.21875 L 16 9.4375 L 27.78125 21.21875 L 29.21875 19.78125 L 16.71875 7.28125 Z">
+              </path>
+            </g>
+          </svg>
+        </a>
+        <!-- Dropdown Content -->
+        <ul class="pl-4 hidden" id="manager-menu">
+          <li>
+            <a href="/manager" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">All
+              Managers</a>
+          </li>
+          <li>
+            <a href="/manager/create" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">Add
+              Manager</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- JavaScript for Dropdown Toggle -->
+<script>
+  function fireDropdown(menu) {
+    const dropdownContent = document.getElementById(menu);
+    const angleDown = this.querySelector("#angle-down");
+    const angleUp = this.querySelector("#angle-up");
+    dropdownContent.classList.toggle("hidden");
+    angleDown.classList.toggle("hidden");
+    angleUp.classList.toggle("hidden");
+  }
+
+  document.getElementById("category").addEventListener("click", function () {
+    fireDropdown.call(this, "category-menu");
+  });
+
+  document
+    .getElementById("sub-category")
+    .addEventListener("click", function () {
+      fireDropdown.call(this, "sub-category-menu");
+    });
+
+  document
+    .getElementById("product")
+    .addEventListener("click", function () {
+      fireDropdown.call(this, "product-menu");
+    });
+
+  document
+    .getElementById("manager")
+    .addEventListener("click", function () {
+      fireDropdown.call(this, "manager-menu");
+    });
+
+</script>

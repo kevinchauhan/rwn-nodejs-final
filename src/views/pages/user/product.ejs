@@ -1,0 +1,36 @@
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <%- include('../../partials/header') %>
+        <!-- Dashboard Content -->
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-2xl mb-5 text-gray-700 font-medium">Products</h1>
+
+            <div class="grid grid-cols-4 gap-5">
+                <% products.forEach((product,index)=>{ %>
+                    <div class="max-w-md mx-auto bg-white shadow-md overflow-hidden rounded-lg">
+                        <img class="w-full h-48 object-cover object-center" src="<%=product.image %>"
+                            alt="Product Image">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600 font-semibold">$29.99</span>
+                                <span class="text-gray-500">Category > Subcategory</span>
+                            </div>
+                            <div class="mt-4">
+                                <h1 class="text-xl font-semibold text-gray-900">
+                                    <%=product.name %>
+                                </h1>
+                                <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Phasellus
+                                    nec iaculis mauris.</p>
+                            </div>
+                            <div class="mt-4">
+                                <button
+                                    class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+
+        </div>
+</body>
