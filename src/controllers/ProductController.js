@@ -24,10 +24,10 @@ class ProductController {
     }
 
     async create(req, res) {
-        const { name, subCategoryId } = req.body
+        const { name, subCategoryId, description, price } = req.body
 
         try {
-            const category = await productModel.create({ name, subCategoryId })
+            await productModel.create({ name, subCategoryId, description, price })
             res.redirect('/product')
         } catch (error) {
             res.status(500).send("Internal server error")
@@ -46,6 +46,33 @@ class ProductController {
         }
 
     }
+
+    async editForm(req, res) {
+        try {
+            const { id } = req.params
+            const product = await productModel.findById(id)
+            const subCategories = await subCategoryModel.find()
+            res.render('pages/product/edit', { product, subCategories })
+        } catch (error) {
+            res.status(500).send("Internal server error")
+        }
+
+    }
+
+    async update(req, res) {
+        try {
+            const { id } = req.params
+            const { name, subCategoryId, description, price } = req.body
+
+            await productModel.findByIdAndUpdate(id, { name, subCategoryId, description, price })
+
+            res.redirect('/product')
+        } catch (error) {
+            res.status(500).send("Internal server error")
+        }
+
+    }
+
 }
 
 export default ProductController

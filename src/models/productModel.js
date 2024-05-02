@@ -6,6 +6,8 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subcategories'
     },
+    price: Number,
+    description: String,
     image: String
 })
 

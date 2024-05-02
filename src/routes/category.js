@@ -1,13 +1,13 @@
 import { Router } from "express";
 import CategoryController from "../controllers/categoryController.js";
 import authenticate from "../middlewares/authenticate.js";
-import admin from "../middlewares/Admin.js";
+import authorized from "../middlewares/authorized.js";
 
 const categoryRouter = Router()
 const categoryController = new CategoryController()
 
 categoryRouter.use(authenticate)
-categoryRouter.use(admin)
+categoryRouter.use(authorized)
 
 categoryRouter.get('/', categoryController.get)
 categoryRouter.get('/create', categoryController.createForm)

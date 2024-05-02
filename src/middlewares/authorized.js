@@ -1,11 +1,11 @@
-const admin = (req, res, next) => {
+const authorized = (req, res, next) => {
     try {
         if (!req.user) {
             res.clearCookie('token')
             return res.redirect('/user/login')
         }
 
-        if (req.user.role !== 'admin') {
+        if (req.user.role === 'user') {
             res.clearCookie('token')
             return res.redirect('/user/login')
         }
@@ -20,4 +20,4 @@ const admin = (req, res, next) => {
     }
 }
 
-export default admin
+export default authorized
