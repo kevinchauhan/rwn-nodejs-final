@@ -89,15 +89,44 @@ class UserController {
 
     async self(req, res) {
         try {
-            const data = req.user
-            data.password = undefined
+            const token = req.cookies.token
+
+            if (!token) {
+                return res.status(401).json({
+                    message: 'unauthorized'
+                })
+            }
+
+            const payload = jwt.verify(token, 'secret', (err, decoded) => {
+                if (err) {
+                    return res.status(401).json({
+                        message: 'unauthorized'
+                    })
+                }
+                return decoded
+            })
+
+            if (!payload) {
+                return res.status(401).json({
+                    message: 'unauthorized'
+                })
+            }
+
+            const user = await userModel.findById(payload.sub).select('-password -__v')
+
+            if (!user) {
+                return res.status(401).json({
+                    message: 'unauthorized'
+                })
+            }
 
             res.json({
-                data
+                user
             })
+
         } catch (error) {
             res.status(500).json({
-                message: 'Internal server error'
+                message: 'Error while verifying token',
             })
         }
 

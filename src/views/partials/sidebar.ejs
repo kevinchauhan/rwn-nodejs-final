@@ -180,4 +180,33 @@
       fireDropdown.call(this, "manager-menu");
     });
 
+  const fetchSelf = async () => {
+    const data = await fetch('/user/self', {
+      credentials: 'include'
+    })
+
+    if (data.status !== 401 || data.status !== 500) {
+      const { user } = await data.json()
+
+      if (user.role === 'manager') {
+        const managerTab = document.getElementById('manager')
+        const tableDelete = Array.from(document.getElementsByClassName('table-delete'))
+        const tableEdit = Array.from(document.getElementsByClassName('table-edit'))
+
+        managerTab.remove()
+
+        tableDelete.forEach(item => {
+          item.remove()
+        })
+
+        tableEdit.forEach(item => {
+          item.remove()
+        })
+
+      }
+    }
+  }
+
+  fetchSelf()
+
 </script>

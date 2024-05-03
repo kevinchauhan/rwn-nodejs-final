@@ -7,8 +7,8 @@ import productRouter from "./routes/product.js";
 import userRouter from "./routes/user.js";
 import cookieParser from "cookie-parser";
 import authenticate from "./middlewares/authenticate.js";
-import admin from "./middlewares/Admin.js";
 import managerRouter from "./routes/manager.js";
+import authorized from "./middlewares/authorized.js";
 const app = express()
 const PORT = 8000
 
@@ -31,7 +31,7 @@ app.set('view engine', 'ejs')
 app.set('views', 'src/views')
 
 // routes
-app.get('/', authenticate, admin, (req, res) => {
+app.get('/', authenticate, authorized, (req, res) => {
     res.render('pages/index')
 })
 app.use('/category', categoryRouter)
