@@ -1,4 +1,5 @@
 const authorized = (req, res, next) => {
+    console.log('authoriexd-->')
     try {
         if (!req.user) {
             res.clearCookie('token')
@@ -6,8 +7,8 @@ const authorized = (req, res, next) => {
         }
 
         if (req.user.role === 'user') {
-            res.clearCookie('token')
-            return res.redirect('/user/login')
+            // res.clearCookie('token')
+            return res.redirect('/user/product')
         }
 
         next()

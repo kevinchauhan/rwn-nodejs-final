@@ -22,6 +22,7 @@ app.use(cookieParser())
 
 // static folder
 app.use(express.static('public'))
+app.use('/uploads', express.static('uploads'))
 
 // express layout
 app.use(expressEjsLayouts)
@@ -34,11 +35,14 @@ app.set('views', 'src/views')
 app.get('/', authenticate, authorized, (req, res) => {
     res.render('pages/index')
 })
+
+
 app.use('/category', categoryRouter)
 app.use('/subcategory', subCategoryRouter)
 app.use('/product', productRouter)
 app.use('/user', userRouter)
 app.use('/manager', managerRouter)
+
 
 app.listen(PORT, () => {
     console.log(`Listening on http://localhost:${PORT}`)

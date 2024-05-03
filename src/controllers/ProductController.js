@@ -27,7 +27,13 @@ class ProductController {
         const { name, subCategoryId, description, price } = req.body
 
         try {
-            await productModel.create({ name, subCategoryId, description, price })
+            let image
+            if (req.file) {
+                image = req.file.path
+            }
+            console.log(image)
+
+            await productModel.create({ name, subCategoryId, description, price, image })
             res.redirect('/product')
         } catch (error) {
             res.status(500).send("Internal server error")

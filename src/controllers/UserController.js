@@ -64,7 +64,6 @@ class UserController {
                 maxAge: 1000 * 60 * 60 * 24   // 24 hr
             })
             console.log('user logged in')
-
             if (user.role === 'user') {
                 return res.redirect('/user/product')
             }
@@ -83,7 +82,6 @@ class UserController {
 
     async productPage(req, res) {
         const products = await productModel.find()
-
         res.render('pages/user/product', { products })
     }
 
