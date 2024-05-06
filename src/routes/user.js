@@ -10,6 +10,9 @@ const userController = new UserController()
 userRouter.get('/signup', guest, userController.signupPage)
 userRouter.post('/signup', guest, userController.signup)
 
+userRouter.get('/emailverification/:id', userController.sendEmailOtp)
+userRouter.post('/emailverification/:id', userController.verifyEmailOtp)
+
 userRouter.get('/login', guest, userController.loginPage)
 userRouter.post('/login', guest, userController.login)
 

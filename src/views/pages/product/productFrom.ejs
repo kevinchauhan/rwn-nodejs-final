@@ -40,32 +40,51 @@
                                     </label>
                                     <input
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="image" name="image" type="file" placeholder="Enter image" accept="image">
+                                        id="image" name="image" type="file" placeholder="Enter image"
+                                        accept="image/jpeg, image/png">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 items-center gap-3">
+
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="brand">
+                                        Brand
+                                    </label>
+                                    <select name="brandId" id=""
+                                        class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                        <option value="">--Select brand--</option>
+                                        <% brands.forEach((brand,index)=>{ %>
+                                            <option value="<%=brand._id%>">
+                                                <%=brand.name%>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
+                                        Category
+                                    </label>
+                                    <select onchange="filterCategory(this)" name="categoryId" id=""
+                                        class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                        <option value="">--Select Category--</option>
+                                        <% categories.forEach((category,index)=>{ %>
+                                            <option value="<%=category._id%>">
+                                                <%=category.name%>
+                                            </option>
+                                            <% }) %>
+                                    </select>
                                 </div>
 
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
                                         Sub Category
                                     </label>
-                                    <select name="subCategoryId" id=""
+                                    <select name="subCategoryId" id="select-sub-category"
                                         class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                         <option value="">--Select Sub Category--</option>
-                                        <% subCategories.forEach((subcategory,index)=>{ %>
-                                            <option value="<%=subcategory._id%>">
-                                                <%=subcategory.name%>
-                                            </option>
-                                            <% }) %>
                                     </select>
                                 </div>
-
-                                <!-- <div class="mb-4">
-                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
-                                        Product Price
-                                    </label>
-                                    <input
-                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="price" name="price" type="text" placeholder="Enter price">
-                                </div> -->
 
 
                             </div>
@@ -83,4 +102,31 @@
                 </div>
         </div>
         </div>
+
+        <script>
+            const filterCategory = async (e) => {
+                const id = e.value
+                const subCategories = await fetchSubCategories(id)
+
+                let html = `<option value="">--Select Sub Category--</option>`
+                subCategories.forEach(subCategory => {
+                    html += `<option value="${subCategory._id}">${subCategory.name}</option>`
+                });
+
+                const subCategoryElement = document.getElementById('select-sub-category')
+                subCategoryElement.innerHTML = html
+            }
+
+            const fetchSubCategories = async (id) => {
+                try {
+                    const res = await fetch(`/subcategory/api/${id}`)
+                    const { data } = await res.json()
+
+                    return data
+                } catch (error) {
+                    console.log(error)
+                }
+
+            }
+        </script>
 </body>

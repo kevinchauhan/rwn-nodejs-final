@@ -10,6 +10,10 @@ const user = (req, res, next) => {
             return res.redirect('/user/login')
         }
 
+        if (!req.user.emailVerified) {
+            return res.redirect(`/user/emailverification/${req.user._id}`)
+        }
+
         next()
     } catch (error) {
         console.log(error)

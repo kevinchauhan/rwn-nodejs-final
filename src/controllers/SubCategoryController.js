@@ -12,6 +12,19 @@ class SubCategoryController {
 
     }
 
+    async getByCategory(req, res) {
+        try {
+            const { id } = req.params
+            const subCategories = await subCategoryModel.find({ categoryId: id })
+            res.json({
+                data: subCategories
+            })
+        } catch (error) {
+            res.status(500).send("Internal server error")
+        }
+
+    }
+
     async createForm(req, res) {
         const categories = await categoryModel.find()
         res.render('pages/subcategory/subcategoryForm', { categories })

@@ -77,6 +77,38 @@
       </li>
       <li class="py-2">
         <!-- Dropdown Trigger -->
+        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 flex justify-between" id="brand">
+          Brand
+          <svg id="angle-down" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+            fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M10 12.586L4.707 7.293a1 1 0 011.414-1.414L10 10.758l4.879-4.879a1 1 0 111.414 1.414L10 12.586z"
+              clip-rule="evenodd" />
+          </svg>
+          <svg id="angle-up" class="h-5 w-5 hidden" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M 16 6.59375 L 15.28125 7.28125 L 2.78125 19.78125 L 4.21875 21.21875 L 16 9.4375 L 27.78125 21.21875 L 29.21875 19.78125 L 16.71875 7.28125 Z">
+              </path>
+            </g>
+          </svg>
+        </a>
+        <!-- Dropdown Content -->
+        <ul class="pl-4 hidden" id="brand-menu">
+          <li>
+            <a href="/brand" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">All Brand</a>
+          </li>
+          <li>
+            <a href="/brand/create" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 py-2">Add
+              Brand</a>
+          </li>
+        </ul>
+      </li>
+      <li class="py-2">
+        <!-- Dropdown Trigger -->
         <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-4 flex justify-between"
           id="product">
           Product
@@ -167,6 +199,11 @@
     .addEventListener("click", function () {
       fireDropdown.call(this, "sub-category-menu");
     });
+  document
+    .getElementById("brand")
+    .addEventListener("click", function () {
+      fireDropdown.call(this, "brand-menu");
+    });
 
   document
     .getElementById("product")
@@ -191,7 +228,7 @@
       if (user.role === 'manager') {
         const managerTab = document.getElementById('manager')
         const tableDelete = Array.from(document.getElementsByClassName('table-delete'))
-        const tableEdit = Array.from(document.getElementsByClassName('table-edit'))
+        // const tableEdit = Array.from(document.getElementsByClassName('table-edit'))
 
         managerTab.remove()
 
@@ -199,9 +236,9 @@
           item.remove()
         })
 
-        tableEdit.forEach(item => {
-          item.remove()
-        })
+        // tableEdit.forEach(item => {
+        //   item.remove()
+        // })
 
       }
     }

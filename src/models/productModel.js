@@ -6,6 +6,10 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subcategories'
     },
+    brandId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'brands'
+    },
     price: Number,
     description: String,
     image: String

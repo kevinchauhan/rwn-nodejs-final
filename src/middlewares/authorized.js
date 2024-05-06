@@ -1,5 +1,5 @@
 const authorized = (req, res, next) => {
-    console.log('authoriexd-->')
+
     try {
         if (!req.user) {
             res.clearCookie('token')

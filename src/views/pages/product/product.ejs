@@ -18,6 +18,9 @@
                                     <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                         Description</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                        Brand Name
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                         Category Name
                                     </th>
                                     <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
@@ -37,12 +40,23 @@
                                             <%=index+1 %>
                                         </td>
                                         <td class="px-6 border py-4 whitespace-nowrap">
-                                            <%=product.name %>
+                                            <div class="flex">
+                                                <div class="mr-2">
+                                                    <img class="w-full h-8 object-cover object-center"
+                                                        src="<%=product.image %>" alt="">
+                                                </div>
+                                                <%=product.name %>
+                                            </div>
                                         </td>
                                         <td class="px-6 border py-4 whitespace-nowrap">
                                             <%=product.description %>
                                         </td>
 
+                                        <td class="px-6 border py-4 whitespace-nowrap">
+                                            <% if(product.brandId){ %>
+                                                <%=product.brandId.name %>
+                                                    <% } %>
+                                        </td>
                                         <td class="px-6 border py-4 whitespace-nowrap">
                                             <% if(product.subCategoryId && product.subCategoryId.categoryId){ %>
                                                 <%=product.subCategoryId.categoryId.name %>
@@ -57,7 +71,7 @@
                                             <%=product.price %>
                                         </td>
                                         <td class="px-6 py-4 border whitespace-nowrap">
-                                            <a class="table-edit bg-blue-600 text-white px-2 py-1 mx-2"
+                                            <a class=" bg-blue-600 text-white px-2 py-1 mx-2"
                                                 href="/product/edit/<%=product._id%>">Edit</a>
                                             <a class="table-delete bg-red-600 text-white px-2 py-1 mx-2"
                                                 href="/product/delete/<%=product._id%>">Delete</a>

@@ -10,8 +10,11 @@ subCategoryRouter.use(authenticate)
 subCategoryRouter.use(authorized)
 
 subCategoryRouter.get('/', subCategoryController.get)
+subCategoryRouter.get('/api/:id', subCategoryController.getByCategory)
+
 subCategoryRouter.get('/create', subCategoryController.createForm)
 subCategoryRouter.post('/create', subCategoryController.create)
+
 subCategoryRouter.get('/delete/:id', subCategoryController.remove)
 
 export default subCategoryRouter

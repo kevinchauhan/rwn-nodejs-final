@@ -26,9 +26,9 @@ class ManagerController {
                 return res.status(400).redirect('back')
             }
 
-            const _SALT_ROUND = 10
-            const hashedPassword = await bcryptjs.hash(password, _SALT_ROUND)
-            await userModel.create({ name, email, password: hashedPassword, role: 'manager' })
+            // const _SALT_ROUND = 10
+            // const hashedPassword = await bcryptjs.hash(password, _SALT_ROUND)
+            await userModel.create({ name, email, password, role: 'manager' })
 
             console.log('Manager created')
             res.status(201).redirect('/manager')

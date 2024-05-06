@@ -8,8 +8,8 @@
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <h1 class="text-gray-600 font-bold text-xl mb-3">Edit Product</h1>
-                        <form action="" method="post">
-                            <div class="grid grid-cols-2 items-center gap-3">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <div class="grid grid-cols-2 items-start gap-3">
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
                                         Product Name
@@ -38,6 +38,23 @@
                                         placeholder="Enter price">
                                 </div>
 
+
+
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
+                                        Brand
+                                    </label>
+                                    <select name="brandId" id=""
+                                        class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                        <option value="">--Select Brand--</option>
+                                        <% brands.forEach((brand,index)=>{ %>
+                                            <option <%=String(product.brandId)===String(brand._id) ? 'selected' : '' %>
+                                                value="<%=brand._id%>">
+                                                    <%=brand.name%>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
                                         Sub Category
@@ -53,6 +70,20 @@
                                             </option>
                                             <% }) %>
                                     </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="image">
+                                        Product Image
+                                    </label>
+                                    <input
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        id="image" name="image" type="file" placeholder="Enter image"
+                                        accept="image/jpeg, image/png">
+                                    <div>
+                                        <img class="w-16 h-16 object-cover object-center" src="/<%=product.image %>"
+                                            alt="">
+                                    </div>
                                 </div>
 
                                 <!-- <div class="mb-4">

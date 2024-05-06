@@ -2,6 +2,8 @@ import bcryptjs from 'bcryptjs'
 import userModel from '../models/userModel.js'
 import jwt from 'jsonwebtoken'
 import productModel from '../models/productModel.js'
+import generateOtp from '../services/generateOtp.js'
+import emailService from '../services/emailService.js'
 
 class UserController {
 
@@ -20,10 +22,10 @@ class UserController {
 
             const _SALT_ROUND = 10
             const hashedPassword = await bcryptjs.hash(password, _SALT_ROUND)
-            await userModel.create({ name, email, password: hashedPassword })
+            const data = await userModel.create({ name, email, password: hashedPassword })
 
             console.log('User signup')
-            res.status(201).redirect('/user/login')
+            res.status(201).redirect(`/user/emailverification/${data._id}`)
         } catch (error) {
             res.status(500).redirect('/user/login')
         }
@@ -81,7 +83,12 @@ class UserController {
     }
 
     async productPage(req, res) {
-        const products = await productModel.find()
+        const products = await productModel.find().populate({
+            path: 'subCategoryId',
+            populate: {
+                path: 'categoryId'
+            }
+        })
         res.render('pages/user/product', { products })
     }
 
@@ -129,6 +136,55 @@ class UserController {
         }
 
     }
+
+    async sendEmailOtp(req, res) {
+        try {
+            const { id } = req.params
+            const user = await userModel.findById(id)
+            const otp = generateOtp()
+            await emailService(otp, user.email)
+
+            const _SALT_ROUND = 10
+            const hashedOtp = await bcryptjs.hash(String(otp), _SALT_ROUND)
+
+            res.cookie('verify', hashedOtp, {
+                httpOnly: true,
+                maxAge: 60 * 1000 * 5 //5min
+            })
+
+            res.render('pages/user/verifyEmail')
+
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Internal server error')
+        }
+    }
+
+    async verifyEmailOtp(req, res) {
+        try {
+            const { id } = req.params
+            const { otp } = req.body
+            const { verify } = req.cookies
+            console.log('otp=>>>>', otp)
+            console.log('hashedotp=>>>>', verify)
+
+            const isVerify = await bcryptjs.compare(String(otp), verify)
+
+            if (!isVerify) {
+                return res.status(400).redirect('back')
+            }
+            await userModel.findByIdAndUpdate(id, { $set: { emailVerified: true } })
+
+            res.clearCookie('verify')
+
+            res.redirect('/user/login')
+
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Internal server error')
+        }
+    }
+
 }
 
 export default UserController

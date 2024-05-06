@@ -1,16 +1,21 @@
+import brandModel from "../models/brandModel.js"
+import categoryModel from "../models/categoryModel.js"
 import productModel from "../models/productModel.js"
 import subCategoryModel from "../models/subCategoryModel.js"
 
 class ProductController {
     async get(req, res) {
         try {
-            const products = await productModel.find().populate({
-                path: 'subCategoryId',
-                populate: {
-                    path: 'categoryId'
-                }
-            })
-            console.log(products)
+            const products = await productModel
+                .find()
+                .populate({
+                    path: 'subCategoryId',
+                    populate: {
+                        path: 'categoryId'
+                    }
+                })
+                .populate('brandId')
+
             res.render('pages/product/product', { products })
         } catch (error) {
             res.status(500).send("Internal server error")
@@ -20,22 +25,24 @@ class ProductController {
 
     async createForm(req, res) {
         const subCategories = await subCategoryModel.find()
-        res.render('pages/product/productFrom', { subCategories })
+        const categories = await categoryModel.find()
+        const brands = await brandModel.find()
+        res.render('pages/product/productFrom', { subCategories, categories, brands })
     }
 
     async create(req, res) {
-        const { name, subCategoryId, description, price } = req.body
+        const { name, subCategoryId, description, price, brandId } = req.body
 
         try {
             let image
             if (req.file) {
                 image = req.file.path
             }
-            console.log(image)
 
-            await productModel.create({ name, subCategoryId, description, price, image })
+            await productModel.create({ name, subCategoryId, description, price, image, brandId })
             res.redirect('/product')
         } catch (error) {
+            console.log(error)
             res.status(500).send("Internal server error")
         }
 
@@ -57,8 +64,10 @@ class ProductController {
         try {
             const { id } = req.params
             const product = await productModel.findById(id)
+            const categories = await categoryModel.find()
             const subCategories = await subCategoryModel.find()
-            res.render('pages/product/edit', { product, subCategories })
+            const brands = await brandModel.find()
+            res.render('pages/product/edit', { product, categories, subCategories, brands })
         } catch (error) {
             res.status(500).send("Internal server error")
         }
@@ -69,8 +78,12 @@ class ProductController {
         try {
             const { id } = req.params
             const { name, subCategoryId, description, price } = req.body
-
-            await productModel.findByIdAndUpdate(id, { name, subCategoryId, description, price })
+            let image
+            if (req.file) {
+                image = req.file.path
+            }
+            console.log(image)
+            await productModel.findByIdAndUpdate(id, { name, subCategoryId, description, price, image })
 
             res.redirect('/product')
         } catch (error) {

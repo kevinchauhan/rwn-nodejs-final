@@ -16,7 +16,7 @@ productRouter.get('/create', productController.createForm)
 productRouter.post('/create', upload, productController.create)
 
 productRouter.get('/edit/:id', productController.editForm)
-productRouter.post('/edit/:id', productController.update)
+productRouter.post('/edit/:id', upload, productController.update)
 
 productRouter.get('/delete/:id', productController.remove)
 

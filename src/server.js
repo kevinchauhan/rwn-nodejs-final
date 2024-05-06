@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import authenticate from "./middlewares/authenticate.js";
 import managerRouter from "./routes/manager.js";
 import authorized from "./middlewares/authorized.js";
+import brandRouter from "./routes/brand.js";
 const app = express()
 const PORT = 8000
 
@@ -39,6 +40,7 @@ app.get('/', authenticate, authorized, (req, res) => {
 
 app.use('/category', categoryRouter)
 app.use('/subcategory', subCategoryRouter)
+app.use('/brand', brandRouter)
 app.use('/product', productRouter)
 app.use('/user', userRouter)
 app.use('/manager', managerRouter)
