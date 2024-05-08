@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer'
+import { EmailTemplate } from './EmailTemplate.js';
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -9,12 +10,13 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const emailService = async (otp, email) => {
+const emailService = async (otp, email, name) => {
+    const tem = EmailTemplate(otp, name)
     const options = {
         from: '"Kevin Chauhan"', // sender address
         to: `${email}`, // list of receivers
         subject: "EMAIL VERIFICATION", // Subject line
-        html: `<b>${otp}</b> is your otp to verify email.`, // html body
+        html: tem
     }
 
     // send mail with defined transport object

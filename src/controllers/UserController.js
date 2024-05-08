@@ -142,7 +142,7 @@ class UserController {
             const { id } = req.params
             const user = await userModel.findById(id)
             const otp = generateOtp()
-            await emailService(otp, user.email)
+            await emailService(otp, user.email, user.name)
 
             const _SALT_ROUND = 10
             const hashedOtp = await bcryptjs.hash(String(otp), _SALT_ROUND)
