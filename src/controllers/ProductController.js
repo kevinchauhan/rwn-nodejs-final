@@ -77,13 +77,13 @@ class ProductController {
     async update(req, res) {
         try {
             const { id } = req.params
-            const { name, subCategoryId, description, price } = req.body
+            const { name, subCategoryId, description, price, brandId } = req.body
             let image
             if (req.file) {
                 image = req.file.path
             }
             console.log(image)
-            await productModel.findByIdAndUpdate(id, { name, subCategoryId, description, price, image })
+            await productModel.findByIdAndUpdate(id, { name, subCategoryId, description, price, image, brandId })
 
             res.redirect('/product')
         } catch (error) {

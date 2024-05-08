@@ -20,7 +20,9 @@ const self = async () => {
             const logout = document.getElementById('head-logout')
             const headTitle = document.getElementById('head-title')
             logout.remove()
-            headTitle.remove()
+            headTitle.innerText = 'PR-Final'
+            headTitle.style.fontWeight = '500'
+            headTitle.style.fontSize = '2rem'
         }
     }
 }

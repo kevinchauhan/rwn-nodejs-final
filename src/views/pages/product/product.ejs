@@ -41,15 +41,19 @@
                                         </td>
                                         <td class="px-6 border py-4 whitespace-nowrap">
                                             <div class="flex">
-                                                <div class="mr-2">
-                                                    <img class="w-full h-8 object-cover object-center"
+                                                <div class="mr-2 w-10 h-8 ">
+                                                    <img class="w-full h-8  object-cover object-center"
                                                         src="<%=product.image %>" alt="">
                                                 </div>
-                                                <%=product.name %>
+                                                <div>
+                                                    <%=product.name %>
+                                                </div>
                                             </div>
                                         </td>
-                                        <td class="px-6 border py-4 whitespace-nowrap">
-                                            <%=product.description %>
+                                        <td class="px-6 border py-4">
+                                            <p class="line-clamp-2">
+                                                <%=product.description %>
+                                            </p>
                                         </td>
 
                                         <td class="px-6 border py-4 whitespace-nowrap">
@@ -68,7 +72,7 @@
                                                     <% } %>
                                         </td>
                                         <td class="px-6 border py-4 whitespace-nowrap">
-                                            <%=product.price %>
+                                            ₹ <%=product.price %>
                                         </td>
                                         <td class="px-6 py-4 border whitespace-nowrap">
                                             <a class=" bg-blue-600 text-white px-2 py-1 mx-2"
