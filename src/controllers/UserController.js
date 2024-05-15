@@ -45,11 +45,17 @@ class UserController {
             if (!user) {
                 return res.status(400).redirect('back')
             }
-
-            const isVerify = await bcryptjs.compare(password, user.password)
-
-            if (!isVerify) {
-                return res.status(400).redirect('back')
+            console.log(user)
+            if (user.role === 'manager') {
+                const isVerify = user.password === password
+                if (!isVerify) {
+                    return res.status(400).redirect('back')
+                }
+            } else {
+                const isVerify = await bcryptjs.compare(password, user.password)
+                if (!isVerify) {
+                    return res.status(400).redirect('back')
+                }
             }
 
             const payload = {

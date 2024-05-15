@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     emailVerified: {
         type: Boolean,
         default: false
-    }
+    },
+    show: String
 })
 
 export default mongoose.model('users', userSchema)
